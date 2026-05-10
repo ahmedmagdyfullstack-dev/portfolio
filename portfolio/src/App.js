@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { ChevronDown, ExternalLink, Mail, Linkedin, FileText, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, CheckCircle, Award, BookOpen, MessageSquare, Download, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
+import { ChevronDown, ExternalLink, Mail, FileText, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, CheckCircle, Award, BookOpen, MessageSquare, Download, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
 
 // ─── Design Tokens ───
 const palette = {
@@ -1355,7 +1355,7 @@ function ContactSection() {
               borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
               transition: "all 0.2s"
             }}>
-              <Linkedin size={16} /> LinkedIn
+              <ExternalLink size={16} /> LinkedIn
             </a>
           </motion.div>
 
