@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { ChevronDown, ExternalLink, Mail, FileText, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, CheckCircle, Award, BookOpen, MessageSquare, Download, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ChevronDown, ExternalLink, Mail, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, Award, BookOpen, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
 
 // ─── Design Tokens ───
 const palette = {
