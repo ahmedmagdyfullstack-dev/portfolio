@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ChevronDown, ExternalLink, Mail, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, Award, BookOpen, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { ChevronDown, ExternalLink, Mail, FileText, MapPin, ArrowRight, Terminal, Zap, Database, Cloud, Shield, Activity, Cpu, GitBranch, Layers, Server, Globe, Clock, CheckCircle, Award, BookOpen, MessageSquare, Download, Code, Box, Workflow, Radio, ChevronRight, X, Monitor, Smartphone } from "lucide-react";
 
 // ─── Design Tokens ───
 const palette = {
@@ -318,12 +318,12 @@ function Hero() {
               transition={{ delay: 0.7 }}
               style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
             >
-              <a onClick={(e) => { e.preventDefault(); scrollTo("impact"); }} href="#" style={{
+              <a onClick={(e) => { e.preventDefault(); scrollTo("impact"); }} href="#impact" style={{
                 padding: "12px 24px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
                 borderRadius: 10, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
                 boxShadow: `0 0 20px ${palette.blueGlow}`, transition: "all 0.2s", cursor: "pointer"
               }}>Explore Impact <ArrowRight size={15} /></a>
-              <a onClick={(e) => { e.preventDefault(); scrollTo("architecture"); }} href="#" style={{
+              <a onClick={(e) => { e.preventDefault(); scrollTo("architecture"); }} href="#architecture" style={{
                 padding: "12px 24px", fontSize: 14, fontWeight: 600, color: palette.text,
                 background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
                 borderRadius: 10, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
@@ -1349,7 +1349,7 @@ function ContactSection() {
             }}>
               <Mail size={16} /> Send Email
             </a>
-            <a href="https://linkedin.com/in/amwadoud" target="_blank" rel="noopener" style={{
+            <a href="https://linkedin.com/in/amwadoud" target="_blank" rel="noopener noreferrer" style={{
               padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
               background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
               borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
