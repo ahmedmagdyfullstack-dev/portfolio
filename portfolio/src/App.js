@@ -1335,29 +1335,29 @@ function ContactSection() {
             Open to senior and staff-level opportunities worldwide. Remote-first, with a track record of shipping production systems across 4 time zones.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}
-          >
-            <a href="mailto:ahmed.magdy.fullstack@gmail.com" style={{
-              padding: "14px 28px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
-              borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
-              boxShadow: `0 0 30px ${palette.blueGlow}`, transition: "all 0.2s"
-            }}>
-              <Mail size={16} /> Send Email
-            </a>
-            <a href="https://linkedin.com/in/amwadoud" target="_blank" rel="noopener noreferrer" style={{
-              padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
-              background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
-              borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
-              transition: "all 0.2s"
-            }}>
-              <ExternalLink size={16} /> LinkedIn
-            </a>
-          </motion.div>
+          // <motion.div
+          //   initial={{ opacity: 0, y: 20 }}
+          //   whileInView={{ opacity: 1, y: 0 }}
+          //   viewport={{ once: true }}
+          //   transition={{ delay: 0.2 }}
+          //   style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}
+          // >
+          //   <a href="mailto:ahmed.magdy.fullstack@gmail.com" style={{
+          //     padding: "14px 28px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
+          //     borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
+          //     boxShadow: `0 0 30px ${palette.blueGlow}`, transition: "all 0.2s"
+          //   }}>
+          //     <Mail size={16} /> Send Email
+          //   </a>
+          //   <a href="https://linkedin.com/in/amwadoud" target="_blank" rel="noopener noreferrer" style={{
+          //     padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
+          //     background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
+          //     borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
+          //     transition: "all 0.2s"
+          //   }}>
+          //     <ExternalLink size={16} /> LinkedIn
+          //   </a>
+          // </motion.div>
 
           <div style={{ display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap" }}>
             {[
