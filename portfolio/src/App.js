@@ -1342,13 +1342,7 @@ function ContactSection() {
             transition={{ delay: 0.2 }}
             style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}
           >
-            // <a href="mailto:ahmed.magdy.fullstack@gmail.com" style={{
-            //   padding: "14px 28px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
-            //   borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
-            //   boxShadow: `0 0 30px ${palette.blueGlow}`, transition: "all 0.2s"
-            // }}>
-            //   <Mail size={16} /> Send Email
-            // </a>
+            
             <a href="https://linkedin.com/in/ama9129" target="_blank" rel="noopener noreferrer" style={{
               padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
               background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
