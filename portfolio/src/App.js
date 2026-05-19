@@ -158,7 +158,7 @@ function Nav() {
       >
         <div style={{ maxWidth: 1140, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", height: 64 }}>
           <button onClick={() => scrollTo("")} style={{ fontFamily: fontMono, fontSize: 15, fontWeight: 700, color: palette.text, letterSpacing: -0.5, background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-            <span style={{ color: palette.blue }}>ahmed</span>.magdy
+            <span style={{ color: palette.blue }}>ahmed</span>
           </button>
 
           {/* Desktop nav */}
@@ -291,7 +291,7 @@ function Hero() {
               style={{ fontSize: "clamp(38px, 5.5vw, 68px)", fontWeight: 800, lineHeight: 1.05, color: palette.text, margin: "0 0 10px", fontFamily: font, letterSpacing: -2 }}
             >
               Ahmed<br />
-              <span style={{ background: `linear-gradient(135deg, ${palette.blue}, ${palette.purple})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Magdy</span>
+              // <span style={{ background: `linear-gradient(135deg, ${palette.blue}, ${palette.purple})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Magdy</span>
             </motion.h1>
 
             <motion.p
@@ -1335,29 +1335,29 @@ function ContactSection() {
             Open to senior and staff-level opportunities worldwide. Remote-first, with a track record of shipping production systems across 4 time zones.
           </motion.p>
 
-          // <motion.div
-          //   initial={{ opacity: 0, y: 20 }}
-          //   whileInView={{ opacity: 1, y: 0 }}
-          //   viewport={{ once: true }}
-          //   transition={{ delay: 0.2 }}
-          //   style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}
-          // >
-          //   <a href="mailto:ahmed.magdy.fullstack@gmail.com" style={{
-          //     padding: "14px 28px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
-          //     borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
-          //     boxShadow: `0 0 30px ${palette.blueGlow}`, transition: "all 0.2s"
-          //   }}>
-          //     <Mail size={16} /> Send Email
-          //   </a>
-          //   <a href="https://linkedin.com/in/amwadoud" target="_blank" rel="noopener noreferrer" style={{
-          //     padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
-          //     background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
-          //     borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
-          //     transition: "all 0.2s"
-          //   }}>
-          //     <ExternalLink size={16} /> LinkedIn
-          //   </a>
-          // </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}
+          >
+            // <a href="mailto:ahmed.magdy.fullstack@gmail.com" style={{
+            //   padding: "14px 28px", fontSize: 14, fontWeight: 600, color: "#fff", background: palette.blue,
+            //   borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
+            //   boxShadow: `0 0 30px ${palette.blueGlow}`, transition: "all 0.2s"
+            // }}>
+            //   <Mail size={16} /> Send Email
+            // </a>
+            <a href="https://linkedin.com/in/ama9129" target="_blank" rel="noopener noreferrer" style={{
+              padding: "14px 28px", fontSize: 14, fontWeight: 600, color: palette.text,
+              background: "rgba(255,255,255,0.04)", border: `1px solid ${palette.border}`,
+              borderRadius: 12, textDecoration: "none", fontFamily: font, display: "inline-flex", alignItems: "center", gap: 8,
+              transition: "all 0.2s"
+            }}>
+              <ExternalLink size={16} /> LinkedIn
+            </a>
+          </motion.div>
 
           <div style={{ display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap" }}>
             {[
@@ -1382,7 +1382,7 @@ function Footer() {
     <footer style={{ padding: "24px 0", borderTop: `1px solid ${palette.border}` }}>
       <Container style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <span style={{ fontSize: 12, color: palette.textDim, fontFamily: fontMono }}>
-          <span style={{ color: palette.blue }}>ahmed</span>.magdy © 2025
+          <span style={{ color: palette.blue }}>ahmed</span> © 2025
         </span>
         <span style={{ fontSize: 11, color: palette.textDim, fontFamily: fontMono }}>
           Engineered with precision
