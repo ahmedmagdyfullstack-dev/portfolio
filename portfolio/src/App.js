@@ -291,7 +291,7 @@ function Hero() {
               style={{ fontSize: "clamp(38px, 5.5vw, 68px)", fontWeight: 800, lineHeight: 1.05, color: palette.text, margin: "0 0 10px", fontFamily: font, letterSpacing: -2 }}
             >
               Ahmed<br />
-              // <span style={{ background: `linear-gradient(135deg, ${palette.blue}, ${palette.purple})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Magdy</span>
+             {/* <span style={{ background: `linear-gradient(135deg, ${palette.blue}, ${palette.purple})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Magdy</span> */}
             </motion.h1>
 
             <motion.p
