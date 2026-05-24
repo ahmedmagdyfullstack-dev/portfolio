@@ -601,7 +601,21 @@ function ArchNode({ label, icon, color, type = "service", delay = 0, sub }) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.35 }}
-      style={{ padding: "10px 16px", borderRadius: 10, background: bg[type], border: `1px solid ${bdr[type]}`, display: "inline-flex", alignItems: "center", gap: 8, flexShrink: 0 }}
+      style={{
+        minWidth: 128,
+        minHeight: 36,
+        padding: "10px 16px",
+        borderRadius: 10,
+        background: bg[type],
+        border: `1px solid ${bdr[type]}`,
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        flexShrink: 0,
+        position: "relative",
+        zIndex: 2,
+        boxShadow: "0 10px 28px rgba(0,0,0,0.18)",
+      }}
     >
       <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 2, repeat: Infinity, delay: delay * 2 }} style={{ width: 6, height: 6, borderRadius: "50%", background: color, boxShadow: `0 0 6px ${color}80`, flexShrink: 0 }} />
       <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
@@ -615,123 +629,82 @@ function ArchNode({ label, icon, color, type = "service", delay = 0, sub }) {
   );
 }
 
-// Horizontal SVG arrow
+// Floating horizontal data packet
 function HArrow({ color, w = 48, delay = 0 }) {
   return (
-    <svg width={w} height="20" style={{ flexShrink: 0, display: "block", overflow: "visible" }}>
-      <line x1="0" y1="10" x2={w} y2="10" stroke={color} strokeOpacity="0.2" strokeWidth="2" />
-      <polygon points={`${w},10 ${w-6},6 ${w-6},14`} fill={color} opacity="0.45" />
-      <circle r="3.5" cy="10" fill={color}>
-        <animate attributeName="cx" from="0" to={w} dur="1.5s" begin={`${delay}s`} repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0;1;1;0" dur="1.5s" begin={`${delay}s`} repeatCount="indefinite" />
-      </circle>
-    </svg>
+    <motion.div
+      aria-hidden="true"
+      style={{ width: w, height: 24, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}
+    >
+      {[0, 1, 2].map(i => (
+        <motion.span
+          key={i}
+          animate={{ opacity: [0.25, 1, 0.25], scale: [0.75, 1.15, 0.75] }}
+          transition={{ duration: 1.4, repeat: Infinity, delay: delay + i * 0.16 }}
+          style={{ width: 5, height: 5, borderRadius: "50%", background: color, boxShadow: `0 0 10px ${color}80` }}
+        />
+      ))}
+    </motion.div>
   );
 }
 
-// Vertical SVG arrow
+// Floating vertical data packet
 function VArrow({ color, h = 36, delay = 0 }) {
   return (
-    <svg width="20" height={h} style={{ flexShrink: 0, display: "block", overflow: "visible" }}>
-      <line x1="10" y1="0" x2="10" y2={h} stroke={color} strokeOpacity="0.2" strokeWidth="2" />
-      <polygon points={`10,${h} 6,${h-6} 14,${h-6}`} fill={color} opacity="0.45" />
-      <circle r="3.5" cx="10" fill={color}>
-        <animate attributeName="cy" from="0" to={h} dur="1s" begin={`${delay}s`} repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0;1;1;0" dur="1s" begin={`${delay}s`} repeatCount="indefinite" />
-      </circle>
-    </svg>
+    <motion.div
+      aria-hidden="true"
+      style={{ width: 20, height: h, flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 5 }}
+    >
+      {[0, 1, 2].map(i => (
+        <motion.span
+          key={i}
+          animate={{ opacity: [0.2, 1, 0.2], scale: [0.7, 1.15, 0.7] }}
+          transition={{ duration: 1.2, repeat: Infinity, delay: delay + i * 0.14 }}
+          style={{ width: 5, height: 5, borderRadius: "50%", background: color, boxShadow: `0 0 10px ${color}80` }}
+        />
+      ))}
+    </motion.div>
   );
 }
 
 // Row & Column helpers
-function FlowRow({ children, gap = 0 }) {
+function FlowRow({ children, gap = 6 }) {
   return <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap }}>{children}</div>;
 }
 function FlowCol({ children }) {
   return <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>{children}</div>;
 }
 
-// FanOut: measures actual child positions with refs, then draws SVG fork overlay
+// FanOut: separates tiers with a floating packet chip instead of attached connector lines
 function FanOut({ items, color, delay = 0, gap = 24 }) {
-  const containerRef = useRef(null);
-  const childRefs = useRef([]);
-  const [lines, setLines] = useState(null);
-
-  useEffect(() => {
-    const measure = () => {
-      if (!containerRef.current) return;
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const positions = childRefs.current.map(el => {
-        if (!el) return null;
-        const r = el.getBoundingClientRect();
-        return { cx: r.left + r.width / 2 - containerRect.left, top: r.top - containerRect.top };
-      }).filter(Boolean);
-      if (positions.length === items.length) {
-        setLines({
-          containerW: containerRect.width,
-          parentCx: containerRect.width / 2,
-          children: positions,
-        });
-      }
-    };
-    // measure after a short delay to let layout settle
-    const t = setTimeout(measure, 80);
-    window.addEventListener("resize", measure);
-    return () => { clearTimeout(t); window.removeEventListener("resize", measure); };
-  }, [items.length]);
-
-  const forkH = 44;
-  const stemEnd = 14;
-  const barY = stemEnd;
-  const branchEnd = forkH - 2;
-
   return (
-    <div ref={containerRef} style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
-      {/* SVG fork connector — absolute overlay matching container width */}
-      {lines && (
-        <svg
-          width={lines.containerW}
-          height={forkH}
-          viewBox={`0 0 ${lines.containerW} ${forkH}`}
-          style={{ display: "block", overflow: "visible" }}
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
+      <div style={{ height: 54, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <motion.div
+          animate={{ opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 1.6, repeat: Infinity, delay }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "5px 10px",
+            borderRadius: 999,
+            background: color + "10",
+            border: `1px solid ${color}22`,
+            color,
+            fontSize: 10,
+            fontFamily: fontMono,
+          }}
         >
-          {/* Stem down from parent center */}
-          <line x1={lines.parentCx} y1="0" x2={lines.parentCx} y2={barY} stroke={color} strokeOpacity="0.2" strokeWidth="2" />
-          {/* Horizontal bar */}
-          <line
-            x1={lines.children[0].cx}
-            y1={barY}
-            x2={lines.children[lines.children.length - 1].cx}
-            y2={barY}
-            stroke={color} strokeOpacity="0.15" strokeWidth="2"
-          />
-          {/* Branch to each child */}
-          {lines.children.map((child, i) => {
-            const cc = items[i].color || color;
-            return (
-              <g key={i}>
-                <line x1={child.cx} y1={barY} x2={child.cx} y2={branchEnd} stroke={cc} strokeOpacity="0.2" strokeWidth="2" />
-                <polygon points={`${child.cx},${branchEnd + 5} ${child.cx - 3.5},${branchEnd} ${child.cx + 3.5},${branchEnd}`} fill={cc} opacity="0.45" />
-                <circle r="3" cx={child.cx} fill={cc}>
-                  <animate attributeName="cy" from={barY} to={branchEnd + 3} dur="0.9s" begin={`${delay + i * 0.2}s`} repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0;1;1;0" dur="0.9s" begin={`${delay + i * 0.2}s`} repeatCount="indefinite" />
-                </circle>
-              </g>
-            );
-          })}
-          {/* Stem pulse */}
-          <circle r="3" cx={lines.parentCx} fill={color}>
-            <animate attributeName="cy" from="0" to={barY} dur="0.5s" begin={`${delay}s`} repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0;1;1;0" dur="0.5s" begin={`${delay}s`} repeatCount="indefinite" />
-          </circle>
-        </svg>
-      )}
-      {/* Spacer when no lines yet */}
-      {!lines && <div style={{ height: forkH }} />}
-      {/* Child nodes */}
-      <div style={{ display: "flex", justifyContent: "center", gap, flexWrap: "nowrap" }}>
+          {[0, 1, 2].map(i => (
+            <span key={i} style={{ width: 5, height: 5, borderRadius: "50%", background: items[i]?.color || color, boxShadow: `0 0 8px ${(items[i]?.color || color)}80` }} />
+          ))}
+          fan-out
+        </motion.div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", gap, flexWrap: "nowrap", position: "relative", zIndex: 2 }}>
         {items.map((item, i) => (
-          <div key={i} ref={el => childRefs.current[i] = el} style={{ display: "flex", justifyContent: "center" }}>
+          <div key={i} style={{ display: "flex", justifyContent: "center" }}>
             <ArchNode {...item} />
           </div>
         ))}
